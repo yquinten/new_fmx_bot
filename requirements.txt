@@ -1,0 +1,8 @@
+python-dotenv
+py-cord
+pandas
+numpy
+openpyxl
+bs4
+playwright
+pytz
