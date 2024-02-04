@@ -102,6 +102,8 @@ class AirlinesManager():
         await page.goto("http://tycoon.airlines-manager.com/alliance/profile")
         await page.locator(".ui-slider-handle").drag_to(page.locator("generic-slider-arrow-right"))
         await page.click("button#donation-button")
+        await page.is_visible("input.purchaseButton")
+        await page.click("input.purchaseButton")
         
 
 
