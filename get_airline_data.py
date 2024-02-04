@@ -97,7 +97,11 @@ class AirlinesManager():
         print(member_data)
         return member_data
 
-
+    async def donate(self):
+        page = self.page
+        await page.goto("http://tycoon.airlines-manager.com/alliance/profile")
+        slider = await page.locator(".ui-slider-handle")
+        
 
 
     async def get_airline_data(self, id):
