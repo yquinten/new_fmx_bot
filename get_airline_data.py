@@ -20,16 +20,17 @@ class AirlinesManager():
 
     async def login(self):
         self.playwright = await self.p.start()
-        self.browser = await self.playwright.chromium.launch(headless=False)
+        self.browser = await self.playwright.chromium.launch()
         self.context = await self.browser.new_context()
         self.page = await self.context.new_page()
         page = self.page
         await page.goto("https://tycoon.airlines-manager.com/login")
+        await page.is_visible('div.cc-window')
+        await page.click('div.cc-window .cc-btn')
         await page.fill("input#username", self.user)
         await page.fill("input#password", self.password)
         await page.click("button[type=submit]")
-        #await page.is_visible('div.cc-window')
-        #await page.click('div.cc-window .cc-btn')
+        
 
     async def logout(self):
         page = self.page
@@ -100,6 +101,11 @@ class AirlinesManager():
     async def donate(self):
         page = self.page
         await page.goto("http://tycoon.airlines-manager.com/alliance/profile")
+        try:
+            await page.is_visible('button.fc-cta-consent')
+            await page.click('button.fc-cta-consent')
+        except:
+            pass
         await page.locator(".ui-slider-handle").drag_to(page.locator("generic-slider-arrow-right"))
         await page.click("button#donation-button")
         await page.is_visible("input.purchaseButton")
@@ -107,23 +113,21 @@ class AirlinesManager():
         
 
 
-    async def get_airline_data(self, id):
+    async def get_airline_data(self):
         await self.login()
         try:
-            async with asyncio.TaskGroup() as tg:
-                try:
-                    profile = tg.create_task(self.get_global_airline_data(id))
-                    network = tg.create_task(self.get_network_airline_data(id))
-                except Exception as e:
-                    print(e)
-            airline_data = profile.result() | network.result()
-            print(airline_data)
+            await self.donate()
+                
         except Exception as e:
             print(e)
         finally:
             await self.logout()
-            return airline_data
+            
+async def main():
+    A = AirlinesManager("yklercq@gmail.com", "Y@nniqu311")
+    await A.get_airline_data()
 
+asyncio.run(main())
 
 
 
