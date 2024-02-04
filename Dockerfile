@@ -12,4 +12,4 @@ RUN playwright install
 
 RUN playwright install-deps
 
-CMD ["python", "tbt_bot.py"]
+CMD ["python", "get_airline_data.py"]
