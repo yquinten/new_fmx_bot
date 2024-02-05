@@ -109,7 +109,7 @@ class AirlinesManager():
         el = await element.bounding_box()
         target_x = el['x'] + 453
         target_y = el['y']
-        await page.mouse.click(target_x, target_y, force=True)
+        await page.mouse.click(target_x, target_y)
         #await page.locator(".generic-slider-arrow-right").hover()
         #await page.mouse.up()
         #await page.evaluate('''() => {const el = document.querySelector(".ui-slider-handle");if (el) {el.setAttribute('style', 'left: 100%;');}}''')
