@@ -2,8 +2,6 @@ import asyncio
 from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
 import datetime
-import openpyxl
-import pandas as pd
 import pytz
 import os
 from dotenv import load_dotenv
@@ -107,8 +105,8 @@ class AirlinesManager():
         except:
             pass
         await page.is_visible(".ui-slider-handle")
-        element = await page.locator(".ui-slider-handle")
-        el = element.bounding_box()
+        element = page.locator(".ui-slider-handle")
+        el = await element.bounding_box()
         target_x = el['x'] + 453
         target_y = el['y']
         await page.mouse.click(target_x, target_y, force=True)
