@@ -106,7 +106,8 @@ class AirlinesManager():
             await page.click('button.fc-cta-consent')
         except:
             pass
-        await page.locator(".ui-slider-handle").drag_to(page.locator("generic-slider-arrow-right"))
+        await page.locator(".ui-slider-handle").setAttribute('style', "left: 100%;")
+        #.drag_to(page.locator("generic-slider-arrow-right"))
         await page.click("button#donation-button")
         await page.is_visible("input.purchaseButton")
         await page.click("input.purchaseButton")
