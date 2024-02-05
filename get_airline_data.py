@@ -107,7 +107,7 @@ class AirlinesManager():
             pass
         await page.is_visible(".ui-slider-handle")
         html = await page.inner_html(".generic-slider-box")
-        soup = Beautifulsoup(html, 'html.parser')
+        soup = BeautifulSoup(html, 'html.parser')
         data_max = int(soup.find('div', {'class':'generic-slider'})['data-max'])
         data_step = int(soup.find('div', {'class':'generic-slider'})['data-step'])
         for _ in range(0, data_max/data_step + 1):
