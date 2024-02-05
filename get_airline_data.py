@@ -108,8 +108,8 @@ class AirlinesManager():
         await page.is_visible(".ui-slider-handle")
         html = await page.inner_html(".generic-slider-box")
         soup = BeautifulSoup(html, 'html.parser')
-        data_max = int(soup.find('div', {'class':'generic-slider'})['data-max'])
-        data_step = int(soup.find('div', {'class':'generic-slider'})['data-step'])
+        data_max = soup.find('div', {'class':'generic-slider'})['data-max']
+        data_step = soup.find('div', {'class':'generic-slider'})['data-step']
         for _ in range(0, data_max/data_step + 1):
             await page.click('.generic-slider-arrow-right')
         #await page.locator(".generic-slider-arrow-right").hover()
