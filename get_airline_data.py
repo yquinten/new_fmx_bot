@@ -110,7 +110,7 @@ class AirlinesManager():
         soup = BeautifulSoup(html, 'html.parser')
         data_max = soup.find('div', {'class':'generic-slider'})['data-max']
         data_step = soup.find('div', {'class':'generic-slider'})['data-step']
-        for _ in range(0, data_max/data_step + 1):
+        for _ in range(0, float(data_max)/float(data_step) + 1):
             await page.click('.generic-slider-arrow-right')
         #await page.locator(".generic-slider-arrow-right").hover()
         #await page.mouse.up()
