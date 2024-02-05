@@ -102,14 +102,16 @@ class AirlinesManager():
         try:
             await page.is_visible('button.fc-cta-consent')
             await page.click('button.fc-cta-consent')
+            
         except:
             pass
         await page.is_visible(".ui-slider-handle")
-        element = page.locator(".ui-slider-handle")
-        el = await element.bounding_box()
-        target_x = el['x'] + 453
-        target_y = el['y']
-        await page.mouse.click(target_x, target_y)
+        html = await page.inner_html(".generic-slider-box")
+        soup = Beautifulsoup(html, 'html.parser')
+        data_max = int(soup.find('div', {'class':'generic-slider'})['data-max'])
+        data_step = int(soup.find('div', {'class':'generic-slider'})['data-step'])
+        for _ in range(0, data_max/data_step + 1):
+            await page.click('.generic-slider-arrow-right')
         #await page.locator(".generic-slider-arrow-right").hover()
         #await page.mouse.up()
         #await page.evaluate('''() => {const el = document.querySelector(".ui-slider-handle");if (el) {el.setAttribute('style', 'left: 100%;');}}''')
