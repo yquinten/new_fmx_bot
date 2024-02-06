@@ -119,6 +119,7 @@ class AirlinesManager():
         #await page.eval_on_locator(".ui-slider-handle", el => el.setAttribute('style', "left: 100%;")
         #.drag_to(page.locator("generic-slider-arrow-right"))
         await page.click("button#donation-button")
+        await page.click("button#donation-button")
         await page.is_visible("input.purchaseButton")
         await page.click("input.purchaseButton")
         
