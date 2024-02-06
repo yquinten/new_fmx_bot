@@ -111,7 +111,7 @@ class AirlinesManager():
         data_max = soup.find('div', {'class':'generic-slider'})['data-max']
         data_step = soup.find('div', {'class':'generic-slider'})['data-step']
         print(data_max, data_step)
-        for _ in range(0, int(data_max)/int(data_step) + 1):
+        for _ in range(0, int(int(data_max)/int(data_step) + 1)):
             await page.click('.generic-slider-arrow-right')
         #await page.locator(".generic-slider-arrow-right").hover()
         #await page.mouse.up()
